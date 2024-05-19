@@ -1,0 +1,26 @@
+<%- include('partials/form'); %>
+<%- include('partials/search'); %>
+
+<% if (searched && companies.length === 0) { %>
+  <p>No reviews found for this company.</p>
+<% } %>
+
+<% if (companies.length > 0) { %>
+  <ul>
+    <% companies.forEach(company => { %>
+      <li>
+        <h3><%= company.name %></h3>
+        <h3>Average Rating: <%= company.averageRating.toFixed(1) %> stars</h3>
+        <ul>
+          <% company.reviews.forEach(review => { %>
+            <li>
+              <strong>Pros:</strong> <%= review.pros %> <br>
+              <strong>Cons:</strong> <%= review.cons %> <br>
+              <strong>Rating:</strong> <%= review.rating %>
+            </li>
+          <% }) %>
+        </ul>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>
